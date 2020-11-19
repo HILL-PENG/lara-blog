@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//user router for practice
+Route::get('user/index','UserController@index');
+Route::get('user/add','UserController@add');
+Route::post('user/store','UserController@store');
+Route::get('user/edit/{{id}}','UserController@edit');
+Route::get('user/update','UserController@update');
