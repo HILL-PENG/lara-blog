@@ -20,6 +20,7 @@ class UserController extends Controller
         // return view('user/index',compact('userInfo'));
         return view('user/index')->with('userInfo',$userInfo);
     }
+
     /**
      * return a add view
      */
@@ -34,10 +35,20 @@ class UserController extends Controller
     public function edit($id)
     {
         // 1.get userinfo which id equal $id
-        $userInfo = User::get($id);
+        $userInfo = User::find($id);
 
         return view('user/edit',compact('userInfo',$userInfo));
     }
+
+    /**
+     * return a del view
+     */
+    public function del($id)
+    {
+        User::destroy($id);
+        return redirect('user/index');
+    }
+
     /**
      * store the form value
      * return result of form submition
@@ -53,6 +64,29 @@ class UserController extends Controller
         $res = User::create($input);
 
         //4.if succcess redirect to list page,if not rejump
+        if($res)
+        {
+            return redirect('user/index');
+        }else{
+            return back();
+        }
+    }
+
+    /**
+     * update the form value edited
+     * return result
+     */
+    public function update(Request $request)
+    {
+        //1.get form data,but except token
+        $input = $request->except('_token');
+        //2.validate
+        //3.update table
+        $userInfo = User::find($input['id']);
+        $userInfo->username = $input['username'];
+        $userInfo->password = $input['password'];
+        $res = $userInfo->save();
+        //4.return result
         if($res)
         {
             return redirect('user/index');

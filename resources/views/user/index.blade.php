@@ -11,6 +11,8 @@
     }
 </style>
 <body>
+    <button onclick="add()">ADD</button>
+    <br><br>
     <table>
         <tr>
             <td>id</td>
@@ -23,9 +25,21 @@
             <td>{{$user->id}}</td>
             <td>{{$user->username}}</td>
             <td>{{$user->password}}</td>
-            <td><a href="/user/edit/{{$user->id}}">edit</a>&nbsp;<a href="">del</a></td>
+            <td><a href="/user/edit/{{$user->id}}">edit</a>&nbsp;<a href="javascript:delConfirm({{$user->id}})">del</a></td>
         </tr>
 @endforeach
     </table>
 </body>
+<script>
+    function delConfirm(id){
+        var id = id
+        if(confirm('are u sure to del this row infomation?')){
+            window.location.href = '/user/del/'+id
+        }
+    }
+
+    function add(){
+        window.location.href = '/user/add'
+    }
+</script>
 </html>

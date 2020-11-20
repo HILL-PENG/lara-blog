@@ -19,5 +19,14 @@ Route::get('/', function () {
 Route::get('user/index','UserController@index');
 Route::get('user/add','UserController@add');
 Route::post('user/store','UserController@store');
-Route::get('user/edit/{{id}}','UserController@edit');
-Route::get('user/update','UserController@update');
+Route::get('user/edit/{id}','UserController@edit');
+Route::post('user/update','UserController@update');
+Route::get('user/del/{id}','UserController@del');
+
+
+//admin
+Route::namespace('Admin')->group(function (){
+    Route::get('admin/login','LoginController@index');
+    Route::get('admin/code','LoginController@code');
+    Route::post('admin/signIn','LoginController@signIn');
+});
