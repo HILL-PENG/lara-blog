@@ -36,5 +36,8 @@ Route::namespace('Admin')->group(function () {
         Route::get('admin/signOut','LoginController@signOut');
         Route::get('admin/index', 'IndexController@index');
         Route::get('admin/welcome', 'IndexController@welcome');
+
+        //user resource route
+        Route::resource('admin/user','UserController');
     });
 });

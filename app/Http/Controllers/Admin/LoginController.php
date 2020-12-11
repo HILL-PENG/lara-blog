@@ -113,10 +113,10 @@ class LoginController extends Controller
 
         // dd($newPassword);
 
-        //insert admin account into db
-        // $data['username'] = 'admin';
-        // $data['password'] = Crypt::encrypt('admin');
-        // Admin::create($data);
+        // insert admin account into db
+        $data['username'] = 'admin';
+        $data['password'] = Crypt::encrypt('admin');
+        Admin::create($data);
         
     }
 }
